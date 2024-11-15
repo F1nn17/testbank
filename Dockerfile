@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim as builder
+FROM openjdk:17-oracle as builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY src /app/src
 
 RUN ./mvnw clean package -DskipTests
 
-FROM openjdk:17-jre-slim
+FROM openjdk:17-oracle
 
 WORKDIR /app
 
