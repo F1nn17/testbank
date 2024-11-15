@@ -1,10 +1,16 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile 
     ports:
       - "8090:8090"
     environment:
-      - SPRING_PROFILES_ACTIVE=prod 
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/walletdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Nastya2001
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update  # Автоматические миграции
+      SPRING_LIQUIBASE_ENABLED: true 
     depends_on:
       - db
     networks:
@@ -14,11 +20,11 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Nastya2001
-      POSTGRES_DB: walletdb
+      POSTGRES_DB: walletdb 
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - app-network
 

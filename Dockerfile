@@ -6,6 +6,10 @@ COPY pom.xml .
 
 COPY src /app/src
 
+COPY . /app
+
+RUN chmod +x mvnw
+
 RUN ./mvnw clean package -DskipTests
 
 FROM openjdk:17-oracle
