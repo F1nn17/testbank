@@ -1,8 +1,9 @@
 package com.shiraku.testbank.model;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
-import org.springframework.data.annotation.Version;
+import com.shiraku.testbank.DTO.OperationType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,10 +11,11 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Wallet {
+public class Transaction {
     @Id
+    private UUID transactionId;
     private UUID walletId;
+    private OperationType operationType;
     private double balance;
-    @Version
-    private Long version;
+    private Timestamp timestamp;
 }

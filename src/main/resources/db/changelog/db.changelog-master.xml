@@ -4,13 +4,34 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-
+         <!-- Create Wallets Table -->
         <changeSet id="1" author="shiraku">
             <createTable tableName="wallet">
                 <column name="wallet_id" type="UUID">
                     <constraints primaryKey="true" nullable="false"/>
                 </column>
                 <column name="balance" type="DECIMAL(19,2)">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+        </changeSet>
+
+         <!-- Create Transactions Table -->
+        <changeSet id="2" author="shiraku">
+            <createTable tableName="transactions">
+                <column name="transaction_id" type="uuid">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="wallet_id" type="uuid">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="operation_type" type="varchar(10)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="amount" type="double">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="timestamp" type="timestamp">
                     <constraints nullable="false"/>
                 </column>
             </createTable>
